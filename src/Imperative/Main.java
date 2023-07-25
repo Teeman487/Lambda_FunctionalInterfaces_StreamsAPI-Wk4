@@ -1,7 +1,10 @@
 package Imperative;
 
+import Lambda_Expression_Predicate2.Predicate;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -28,9 +31,18 @@ public class Main {
 
         System.out.println("// Declarative approach");
         // Decarative approach
-        people.stream()
-                .filter(person -> Gender.FEMALE.equals(person.gender))
-                .forEach(System.out::println);
+        /*people.stream()
+                .filter(person -> Gender.FEMALE.equals(person.gender)).
+                forEach(System.out::println);*/
+
+        Predicate<Person> personPredicate = person -> Gender.FEMALE.equals(person.gender);
+
+       List<Person>females2 = people.stream()
+                .filter(person -> Gender.FEMALE.equals(person.gender)).
+                collect(Collectors.toList());
+       females2.forEach(System.out::println);
+
+
     }
      static class Person {
         private final String name;
