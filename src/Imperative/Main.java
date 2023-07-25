@@ -1,5 +1,6 @@
 package Imperative;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -11,6 +12,25 @@ public class Main {
                 new Person("Toheeb",Gender.MALE)
 
         );
+
+        System.out.println("// Imperative approach");
+        // Imperative approach
+        List<Person> females = new ArrayList<>();
+
+        for(Person person :people) {
+            if(Gender.FEMALE.equals(person.gender)) {
+                females.add(person);
+            }
+        }
+        for(Person female :females) {
+            System.out.println(female);
+        }
+
+        System.out.println("// Declarative approach");
+        // Decarative approach
+        people.stream()
+                .filter(person -> Gender.FEMALE.equals(person.gender))
+                .forEach(System.out::println);
     }
      static class Person {
         private final String name;
